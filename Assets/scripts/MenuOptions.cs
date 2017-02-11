@@ -4,14 +4,15 @@ using System.Collections;
 
 public class MenuOptions : MonoBehaviour {
     public bool time;
+    public bool menu;
 
 	public void LoadScene(string name)
     {
-
-        if (time)
+        if(time)
+            Time.timeScale = 1;
+        if (time && !menu)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Time.timeScale = 1;
         }
         else
             SceneManager.LoadScene(name);
