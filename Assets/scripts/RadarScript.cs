@@ -12,15 +12,28 @@ public class RadarScript : MonoBehaviour {
     public Image minion;
     public Image gameover;
     public Rigidbody objectToMeasure;
+    public GameObject BtVoltarMenu;
+    public GameObject BtJogarNovamente;
+    public Text velocidade;
+    double speed;
 
     void Start()
     {
         gameover.enabled = false;
+        BtVoltarMenu.SetActive(false);
+        BtJogarNovamente.SetActive(false);
+        velocidade.text = "0";
+    }
+
+    void update()
+    {
+        speed = objectToMeasure.velocity.magnitude * 3.6;
+        velocidade.text = "12";
+        Debug.Log(velocidade);
     }
 
     public void OnTriggerEnter(Collider col)
     {
-        double speed;
         speed = objectToMeasure.velocity.magnitude * 3.6;
         if (speed > vmax)
         {
@@ -39,6 +52,8 @@ public class RadarScript : MonoBehaviour {
                 moto.enabled = false;
                 gameover.enabled = true;
                 Time.timeScale = 0;
+                BtVoltarMenu.SetActive(true);
+                BtJogarNovamente.SetActive(true);
             }
         }
     }
