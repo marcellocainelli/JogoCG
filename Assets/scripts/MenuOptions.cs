@@ -4,18 +4,18 @@ using System.Collections;
 
 public class MenuOptions : MonoBehaviour {
     public bool time;
-    public bool menu;
 
 	public void LoadScene(string name)
     {
-        if(time)
+        if (time)
             Time.timeScale = 1;
-        if (time && !menu)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        else
-            SceneManager.LoadScene(name);
+        SceneManager.LoadScene(name);
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()

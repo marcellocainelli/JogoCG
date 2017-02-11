@@ -13,24 +13,18 @@ public class RadarScript : MonoBehaviour {
     public Image gameover;
     public Rigidbody objectToMeasure;
     public GameObject BtVoltarMenu;
-    public GameObject BtJogarNovamente;
-    public Text velocidade;
+    public GameObject BtJogaNovo;
+    public Text pontos;
     double speed;
+    
 
     void Start()
     {
         gameover.enabled = false;
         BtVoltarMenu.SetActive(false);
-        BtJogarNovamente.SetActive(false);
-        velocidade.text = "0";
+        BtJogaNovo.SetActive(false);
     }
 
-    void update()
-    {
-        speed = objectToMeasure.velocity.magnitude * 3.6;
-        velocidade.text = "12";
-        Debug.Log(velocidade);
-    }
 
     public void OnTriggerEnter(Collider col)
     {
@@ -50,10 +44,11 @@ public class RadarScript : MonoBehaviour {
             else if (moto.enabled == true)
             {
                 moto.enabled = false;
+                BtVoltarMenu.SetActive(true);
+                BtJogaNovo.SetActive(true);
                 gameover.enabled = true;
                 Time.timeScale = 0;
-                BtVoltarMenu.SetActive(true);
-                BtJogarNovamente.SetActive(true);
+                pontos.enabled = true;
             }
         }
     }
