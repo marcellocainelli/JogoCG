@@ -15,7 +15,10 @@ public class RadarScript : MonoBehaviour {
     public GameObject BtVoltarMenu;
     public GameObject BtJogarNovamente;
     public Text velocidade;
+    public string id_radar;
     double speed;
+    private static int qteBrinquedos = 6;
+    private int qteAnterior = 6;
 
     void Start()
     {
@@ -23,6 +26,8 @@ public class RadarScript : MonoBehaviour {
         BtVoltarMenu.SetActive(false);
         BtJogarNovamente.SetActive(false);
         velocidade.text = "0";
+        qteBrinquedos = 6;
+        qteAnterior = 6;
     }
 
     void update()
@@ -55,6 +60,29 @@ public class RadarScript : MonoBehaviour {
                 BtVoltarMenu.SetActive(true);
                 BtJogarNovamente.SetActive(true);
             }
+            qteBrinquedos = qteBrinquedos-1;
         }
+        else if(id_radar == "radar1")
+        {
+           
+            if(qteBrinquedos < 6 && qteAnterior == qteBrinquedos)
+            {
+                if (moto.enabled == false)
+                    moto.enabled = true;
+                else if (trem.enabled == false)
+                    trem.enabled = true;
+                else if (bb8.enabled == false)
+                    bb8.enabled = true;
+                else if (mario.enabled == false)
+                    mario.enabled = true;
+                else if (elza.enabled == false)
+                    elza.enabled = true;
+                else if (minion.enabled == false)
+                    minion.enabled = true;
+                qteBrinquedos++;
+            }
+            qteAnterior = qteBrinquedos;
+        }
+        Debug.Log(qteBrinquedos);
     }
 }
