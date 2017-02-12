@@ -19,6 +19,9 @@ public class RadarScript : MonoBehaviour {
     double speed;
     private static int qteBrinquedos = 6;
     private int qteAnterior = 6;
+    public GameObject BtJogaNovo;
+    public Text pontos;
+
 
     void Start()
     {
@@ -28,14 +31,9 @@ public class RadarScript : MonoBehaviour {
         velocidade.text = "0";
         qteBrinquedos = 6;
         qteAnterior = 6;
+      //  BtJogaNovo.SetActive(false);
     }
 
-    void update()
-    {
-        speed = objectToMeasure.velocity.magnitude * 3.6;
-        velocidade.text = "12";
-        Debug.Log(velocidade);
-    }
 
     public void OnTriggerEnter(Collider col)
     {
@@ -55,10 +53,11 @@ public class RadarScript : MonoBehaviour {
             else if (moto.enabled == true)
             {
                 moto.enabled = false;
+                BtVoltarMenu.SetActive(true);
+                BtJogaNovo.SetActive(true);
                 gameover.enabled = true;
                 Time.timeScale = 0;
-                BtVoltarMenu.SetActive(true);
-                BtJogarNovamente.SetActive(true);
+                pontos.enabled = true;
             }
             qteBrinquedos = qteBrinquedos-1;
         }
@@ -83,6 +82,5 @@ public class RadarScript : MonoBehaviour {
             }
             qteAnterior = qteBrinquedos;
         }
-        Debug.Log(qteBrinquedos);
     }
 }
